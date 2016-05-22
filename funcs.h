@@ -11,6 +11,9 @@
 #ifndef _FUNCS_H
 #define _FUNCS_H
 
+#include <stdlib.h>
+#include <time.h>
+#include <math.h>
 #include "common.h"
 
 void create_random_array(star_t * array, int size);
