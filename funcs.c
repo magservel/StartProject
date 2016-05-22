@@ -12,6 +12,10 @@
 
 char spectralTypeArray[9] = {'O', 'B', 'A', 'F', 'G', 'K', 'M', 'L', 'T'};
 
+float_t float_rand_a_b (float_t a, float_t b){
+    return ( (float_t)rand()/(float_t)RAND_MAX ) * (b-a) + a;
+}
+
 void create_random_array(star_t * stars, int size)
 {
 
@@ -19,21 +23,19 @@ void create_random_array(star_t * stars, int size)
 
   int i;
   for(i= 0; i<size; i++) {
-    stars[i].index        = rand();
+    stars[i].index        = rand()%10;
     stars[i].spectralType = spectralTypeArray[rand()%9];
     stars[i].subType      = rand()%10;
-    stars[i].designation  = sprintf("%c%d.%d", spectralType, subType, index);
+    sprintf(stars[i].designation, "%c%d.%d", stars[i].spectralType, stars[i].subType, stars[i].index);
     stars[i].magnitude    = float_rand_a_b(-10, 20);
-    stars[i].pos.x        = float_rand_a_b(-1e5, 1e5);
-    stars[i].pos.y        = float_rand_a_b(-1e5, 1e5);
-    stars[i].pos.z        = float_rand_a_b(-3e3, 3e3);
+    stars[i].position.x   = float_rand_a_b(-1e5, 1e5);
+    stars[i].position.y   = float_rand_a_b(-1e5, 1e5);
+    stars[i].position.z   = float_rand_a_b(-3e3, 3e3);
 
   }
 }
 
-float_t float_rand_a_b (float_t a, float_t b){
-    return ( rand()/(float_t)RAND_MAX ) * (b-a) + a
-}
+
 /*typedef struct star{
   int index;                   // counting index
   char spectralType;           // random: O, B, A, F, G, K, M, L, T
@@ -49,14 +51,17 @@ void print_stars(star_t* array, int n)
 {
   int i;
   printf("\nprint_stars, n = %d:\n", n);
-  for(i = 0; i<n; i++)
-    printf("%d ",array[i].index);
-    //printf("%s ",array[i].spectralType);
-    printf("%d ",array[i].subType);
-    //printf("%s ",array[i].magnitude);
-    //printf("%s ",array[i].designation);
-    //printf("%s ",array[i].position);
-  printf("\n");
+  for(i = 0; i<n; i++) {
+    //printf("%d ",array[i].index);
+    //printf("spectral Type %d ",array[i].spectralType);
+    //printf("%d ",array[i].subType);
+    //printf("%f ",array[i].magnitude);
+    printf("designation %d %s \n", i, array[i].designation);
+    printf("position x %d %f \n", i, array[i].position.x);
+    printf("position y %d %f \n", i, array[i].position.y);
+    printf("position z %d %f \n", i, array[i].position.z);
+    printf("\n");
+  }
 }
 
 
