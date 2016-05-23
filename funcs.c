@@ -8,9 +8,15 @@
  *
  **/
 
+
 #include "funcs.h"
 
 char spectralTypeArray[9] = {'O', 'B', 'A', 'F', 'G', 'K', 'M', 'L', 'T'};
+
+float_t distance_from_origin(star_t star){
+
+  return sqrt(star.position.x*star.position.x + star.position.y*star.position.y + star.position.z*star.position.z);
+}
 
 float_t float_rand_a_b (float_t a, float_t b){
     return ( (float_t)rand()/(float_t)RAND_MAX ) * (b-a) + a;
@@ -57,9 +63,10 @@ void print_stars(star_t* array, int n)
     //printf("%d ",array[i].subType);
     //printf("%f ",array[i].magnitude);
     printf("designation %d %s \n", i, array[i].designation);
-    printf("position x %d %f \n", i, array[i].position.x);
-    printf("position y %d %f \n", i, array[i].position.y);
-    printf("position z %d %f \n", i, array[i].position.z);
+    printf("distance %f\n", distance_from_origin(array[i]));    
+    //printf("position x %d %f \n", i, array[i].position.x);
+    //printf("position y %d %f \n", i, array[i].position.y);
+    //printf("position z %d %f \n", i, array[i].position.z);
     printf("\n");
   }
 }
@@ -69,14 +76,61 @@ float_t starfunc(star_t a, star_t b)
 {
   unsigned short x = a.subType;
   unsigned short y = b.subType;
-  return (x + y + x*y/0.6);
-  //return sqrt(x + y + x*y/0.6);
+  return sqrt(x + y + x*y/0.6);
 }
 
 
+void swap_star(star_t* array, int i, int j) {
+
+  int l;
+  star_t tmp;
+
+  tmp.index = array[i].index;
+  array[i].index = array[j].index;
+  array[j].index = tmp.index;
+
+  tmp.spectralType = array[i].spectralType;
+  array[i].spectralType = array[j].spectralType;
+  array[j].spectralType = tmp.spectralType;
+
+  tmp.subType = array[i].subType;
+  array[i].subType = array[j].subType;
+  array[j].subType = tmp.subType;
+
+  tmp.index = array[i].magnitude;
+  array[i].magnitude = array[j].magnitude;
+  array[j].magnitude = tmp.magnitude;
+
+  for(l=0; l<9; l++) {
+    tmp.designation[l] = array[i].designation[l];
+    array[i].designation[l] = array[j].designation[l];
+    array[j].designation[l] = tmp.designation[l];
+  }
+  
+  tmp.position.x = array[i].position.x;
+  array[i].position.x = array[j].position.x;
+  array[j].position.x = tmp.position.x;
+
+  tmp.position.y = array[i].position.y;
+  array[i].position.y = array[j].position.y;
+  array[j].position.y = tmp.position.y;
+
+  tmp.position.z = array[i].position.z;
+  array[i].position.z = array[j].position.z;
+  array[j].position.z = tmp.position.z;
+}
+
 void sort(star_t* array, int n) 
 {
-  
+  int i, j;
+  star_t* tmp, arrayi;
+  for(i= 0; i<n; i++) {
+    for(j= i +1; j<n; j++) {
+      if(distance_from_origin(array[i]) < distance_from_origin(array[j])) {
+        swap_star(array, i, j);        
+      }  
+    }
+  }
 }
 
 void fill_matrix(star_t * array, float_t **matrix, int size)
