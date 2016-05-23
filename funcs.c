@@ -13,9 +13,15 @@
 
 char spectralTypeArray[9] = {'O', 'B', 'A', 'F', 'G', 'K', 'M', 'L', 'T'};
 
-float_t distance_from_origin(star_t star){
-
-  return sqrt(star.position.x*star.position.x + star.position.y*star.position.y + star.position.z*star.position.z);
+float_t distance_two_stars(star_t star1, star_t star2){
+  
+  float_t position_star_1 = sqrt(star1.position.x*star1.position.x + star1.position.y*star1.position.y + star1.position.z*star1.position.z);
+  float_t position_star_2 = sqrt(star2.position.x*star2.position.x + star2.position.y*star2.position.y + star2.position.z*star2.position.z);
+  
+  if( position_star_1 > position_star_2)
+    return position_star_1 - position_star_2;
+  else 
+    return position_star_2 - position_star_1;
 }
 
 float_t float_rand_a_b (float_t a, float_t b){
@@ -63,7 +69,7 @@ void print_stars(star_t* array, int n)
     //printf("%d ",array[i].subType);
     //printf("%f ",array[i].magnitude);
     printf("designation %d %s \n", i, array[i].designation);
-    printf("distance %f\n", distance_from_origin(array[i]));    
+    //printf("distance %f\n", distance_two_stars(array[i]));    
     //printf("position x %d %f \n", i, array[i].position.x);
     //printf("position y %d %f \n", i, array[i].position.y);
     //printf("position z %d %f \n", i, array[i].position.z);
@@ -123,10 +129,15 @@ void swap_star(star_t* array, int i, int j) {
 void sort(star_t* array, int n) 
 {
   int i, j;
-  star_t* tmp, arrayi;
+  star_t* tmp;
+  star_t origin;
+  origin.position.x = 0.00;
+  origin.position.y = 0.00;
+  origin.position.z = 0.00;
+
   for(i= 0; i<n; i++) {
     for(j= i +1; j<n; j++) {
-      if(distance_from_origin(array[i]) < distance_from_origin(array[j])) {
+      if(distance_two_stars(array[i], origin) < distance_two_stars(array[j], origin)) {
         swap_star(array, i, j);        
       }  
     }
@@ -135,7 +146,14 @@ void sort(star_t* array, int n)
 
 void fill_matrix(star_t * array, float_t **matrix, int size)
 {
+  int i, j;
   
+  for(i=0; i<size; i++) {
+    for(j=0; j<size; j++) {
+      matrix[i][j] = distance_two_stars(array[i], array[j]) + starfunc(array[i], array[j]); 
+      //matrix[i][j] = 0.00;    
+    }
+  }
 }
 
 void print_matrix(float_t** theMatrix, int n)
@@ -145,7 +163,7 @@ void print_matrix(float_t** theMatrix, int n)
   for(i = 0 ; i < n; i++)
     {
       for(j = 0 ; j < n ; j++)
-	printf("%.2f " , theMatrix[i][j]);
+	      printf("%.2f " , theMatrix[i][j]);
       putchar('\n');
     }
 }
