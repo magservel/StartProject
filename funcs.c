@@ -11,17 +11,20 @@
 
 #include "funcs.h"
 
+
 char spectralTypeArray[9] = {'O', 'B', 'A', 'F', 'G', 'K', 'M', 'L', 'T'};
+
+float_t abs_a_b(float_t a, float_t b) {
+  if (a - b > 0) return a-b;
+  else return b-a;
+}
 
 float_t distance_two_stars(star_t star1, star_t star2){
   
   float_t position_star_1 = sqrt(star1.position.x*star1.position.x + star1.position.y*star1.position.y + star1.position.z*star1.position.z);
   float_t position_star_2 = sqrt(star2.position.x*star2.position.x + star2.position.y*star2.position.y + star2.position.z*star2.position.z);
   
-  if( position_star_1 > position_star_2)
-    return position_star_1 - position_star_2;
-  else 
-    return position_star_2 - position_star_1;
+  return abs_a_b(position_star_1, position_star_2);
 }
 
 float_t float_rand_a_b (float_t a, float_t b){
@@ -151,7 +154,6 @@ void fill_matrix(star_t * array, float_t **matrix, int size)
   for(i=0; i<size; i++) {
     for(j=0; j<size; j++) {
       matrix[i][j] = distance_two_stars(array[i], array[j]) + starfunc(array[i], array[j]); 
-      //matrix[i][j] = 0.00;    
     }
   }
 }
@@ -170,7 +172,65 @@ void print_matrix(float_t** theMatrix, int n)
 
 hist_param_t generate_histogram(float_t **matrix, int *histogram, int mat_size, int hist_size)
 {
+  int i, j, cpt, sum;
+  float_t min = FLT_MAX, max = 0, step;
+  printf("\nmax 1 %f\n", max);
+  float_t** vonNeumann = (float_t**)malloc(mat_size * sizeof(float_t*));
+  for(i=0; i<mat_size; i++) {
+    vonNeumann[i] = (float_t*)malloc(mat_size * sizeof(float_t));
+  } 
+//    Fill vonNeumann matrix
+  for(i=0; i<mat_size; i++) {
+    for(j=0; j<mat_size; j++) {
+      cpt = 0;      
+      sum = 0;
+      if(i!=0) {
+        sum += abs_a_b(matrix[i][j], matrix[i-1][j]);
+        cpt++;
+      }
+      if(j!=0) {
+        sum += abs_a_b(matrix[i][j], matrix[i][j-1]);
+        cpt++;
+      }
+      if(i!=(mat_size-1)) {
+        sum += abs_a_b(matrix[i][j], matrix[i+1][j]);
+        cpt++;
+      }
+      if(j!=(mat_size-1)) {
+        sum += abs_a_b(matrix[i][j], matrix[i][j+1]);
+        cpt++;
+      }
+      vonNeumann[i][j] = sum/cpt;
+    }
+  }
+
+//    Get min et max
+  for(i=0; i<mat_size; i++) {
+    for(j=0; j<mat_size; j++) {
+      if (matrix[i][j] > max) max = matrix[i][j];
+      if (matrix[i][j] < min) min = matrix[i][j];
+    }
+  }
+//    printf("max 2 %f\n", max);
+//    printf("int max = %d\n", (int)max);
+
+//    Fill histogram  
+  step = (max-min)/hist_size;
+//  printf("step %f\n", step);
+  for(i=0; i<mat_size; i++) {
+    for(j=0; j<mat_size; j++) {
+      cpt = (int)((matrix[i][j] - min)/step);
+      histogram[cpt]++;
+    }
+  }
   
+  hist_param_t hist_param;
+  hist_param.hist_size = hist_size;
+  hist_param.min = min;
+  hist_param.max = max;
+  hist_param.bin_size = step;
+
+  return hist_param;
 }
 
 void display_histogram(int *histogram, hist_param_t histparams)

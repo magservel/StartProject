@@ -40,7 +40,7 @@ int main(int argc, char **argv)
   end = clock();
   printtime(start, end);
   //print_stars(stars, N);
-         
+          
   printf("sorting stars:    \t");
   start = clock();
 
@@ -48,7 +48,7 @@ int main(int argc, char **argv)
    
   end = clock();
   printtime(start, end);
-  //print_stars(stars, N);
+  print_stars(stars, N);
    
   printf("allocating matrix: \t");
   start = clock();
@@ -67,16 +67,16 @@ int main(int argc, char **argv)
    
   end = clock();
   printtime(start, end);
-  print_matrix(matrix, N);
+  //print_matrix(matrix, N);
    
- /* printf("generating histogram: \t");
+  printf("generating histogram: \t");
   start = clock();
   int *histogram = (int *)calloc(NUM_HIST_BOXES,sizeof(int));
   hist_param_t histparams = generate_histogram(matrix, histogram, N, NUM_HIST_BOXES);
   end = clock();
   printtime(start, end);
 
-  display_histogram(histogram, histparams);*/
+  display_histogram(histogram, histparams);
 
   free(stars);
   free(matrix);
