@@ -14,11 +14,13 @@
 
 char spectralTypeArray[9] = {'O', 'B', 'A', 'F', 'G', 'K', 'M', 'L', 'T'};
 
+/* Absolute value of the difference between a and b*/
 float_t abs_a_b(float_t a, float_t b) {
   if (a - b > 0) return a-b;
   else return b-a;
 }
 
+/*Distance between two stars*/
 float_t distance_two_stars(star_t star1, star_t star2){
   
   float_t position_star_1 = sqrt(star1.position.x*star1.position.x + star1.position.y*star1.position.y + star1.position.z*star1.position.z);
@@ -27,6 +29,13 @@ float_t distance_two_stars(star_t star1, star_t star2){
   return abs_a_b(position_star_1, position_star_2);
 }
 
+/*Distance of a star from the origin*/
+float_t distance_origin(star_t star) {
+
+  return sqrt(star.position.x*star.position.x + star.position.y*star.position.y + star.position.z*star.position.z);
+}
+
+/*Return a random float number between a and b*/
 float_t float_rand_a_b (float_t a, float_t b){
     return ( (float_t)rand()/(float_t)RAND_MAX ) * (b-a) + a;
 }
@@ -72,7 +81,7 @@ void print_stars(star_t* array, int n)
     //printf("%d ",array[i].subType);
     //printf("%f ",array[i].magnitude);
     printf("designation %d %s \n", i, array[i].designation);
-    //printf("distance %f\n", distance_two_stars(array[i]));    
+    printf("distance %f\n", distance_origin(array[i]));    
     //printf("position x %d %f \n", i, array[i].position.x);
     //printf("position y %d %f \n", i, array[i].position.y);
     //printf("position z %d %f \n", i, array[i].position.z);
@@ -89,7 +98,7 @@ float_t starfunc(star_t a, star_t b)
 }
 
 
-void swap_star(star_t* array, int i, int j) {
+/*void swap_star(star_t* array, int i, int j) {
 
   int l;
   star_t tmp;
@@ -127,9 +136,18 @@ void swap_star(star_t* array, int i, int j) {
   tmp.position.z = array[i].position.z;
   array[i].position.z = array[j].position.z;
   array[j].position.z = tmp.position.z;
-}
+}*/
 
-void sort(star_t* array, int n) 
+/*void swap_pointers(star_t** star1, star_t** star2) {
+
+  star_t* tmp = (star_t*)malloc(sizeof(star_t));
+
+  tmp = star1;
+  star1 = star2;
+  star2 = tmp;
+}*/
+
+/*void sort(star_t* array, int n) 
 {
   int i, j;
   star_t* tmp;
@@ -141,10 +159,69 @@ void sort(star_t* array, int n)
   for(i= 0; i<n; i++) {
     for(j= i +1; j<n; j++) {
       if(distance_two_stars(array[i], origin) < distance_two_stars(array[j], origin)) {
-        swap_star(array, i, j);        
+        //swap_pointers(&(array + i), &(array+j)); 
+        //swap_star(array, i, j)     
       }  
     }
   }
+}*/
+
+void copy_star(star_t* star1, star_t* star2) {
+    star1->index        = star2->index;
+    star1->spectralType = star2->spectralType;
+    star1->subType      = star2->subType;
+    sprintf(star1->designation, "%c%d.%d", star1->spectralType, star1->subType, star1->index);
+    star1->magnitude    = star2->magnitude;
+    star1->position.x   = star2->position.x ;
+    star1->position.y   = star2->position.y;
+    star1->position.z   = star2->position.z ;
+}
+
+void merge_sort(star_t* array, int n) {
+  if(n != 1) {
+    int n1 = n / 2;
+    int n2 = n - n1;
+    // Allocate new lists
+    star_t* list = (star_t*)malloc((n1+n2)*sizeof(star_t));
+    star_t* list1 = list;
+    star_t* list2 = list+ n1;
+    int i;
+    for(i = 0; i < n1; i++)
+      copy_star(list1+i, array+i);
+    for(i = 0; i < n2; i++)
+      copy_star(list2+i, array+n1+i);
+    // Sort list1 and list2
+    merge_sort(list1, n1);
+    merge_sort(list2, n2);
+    // Merge!
+    int i1 = 0;
+    int i2 = 0;
+    i = 0;
+    while(i1 < n1 && i2 < n2) {
+      if(distance_origin(list1[i1]) < distance_origin(list2[i2])) {
+        copy_star(array+i, list1+i1);
+        i1++;
+      }
+      else {
+        copy_star(array+i, list2+i2);
+        i2++;
+      }
+      i++;
+    }
+    while(i1 < n1) {
+      copy_star(array+i, list1+i1);
+        i1++;
+        i++;
+    }
+    while(i2 < n2) {
+      copy_star(array+i, list2+i2);
+      i2++;
+      i++;
+    }
+    free(list);
+  }
+  else 
+    return;
 }
 
 void fill_matrix(star_t * array, float_t **matrix, int size)

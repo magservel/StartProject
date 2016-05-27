@@ -40,15 +40,15 @@ int main(int argc, char **argv)
   end = clock();
   printtime(start, end);
   //print_stars(stars, N);
-          
+  printf("\n");   
   printf("sorting stars:    \t");
   start = clock();
 
-  sort(stars, N);
+  merge_sort(stars, N);
    
   end = clock();
   printtime(start, end);
-  print_stars(stars, N);
+  //print_stars(stars, N);
    
   printf("allocating matrix: \t");
   start = clock();
