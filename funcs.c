@@ -229,15 +229,15 @@ void fill_matrix(star_t * array, float_t **matrix, int size)
   int i, j;
   
   for(i=0; i<size; i++) {
-    for(j=i; j<size; j++) {
+    for(j=0; j<=i; j++) {
       matrix[i][j] = distance_two_stars(array[i], array[j]) + starfunc(array[i], array[j]); 
     }
   }
-  for(j=1; j<size; j++) {
-    for(i=j; i<size; i++) {
-      matrix[j][i] = matrix[i][j];
+  /*for(i=1; i<size; i++) {
+    for(j=i; j<size; j++) {
+      matrix[i][j] = matrix[j][i];
     }
-  }
+  }*/
 } 
 
 void print_matrix(float_t** theMatrix, int n)
@@ -256,32 +256,80 @@ hist_param_t generate_histogram(float_t **matrix, int *histogram, int mat_size, 
 {
   int i, j, cpt, sum;
   float_t min = FLT_MAX, max = 0, step;
-  printf("\nmax 1 %f\n", max);
+  //printf("\nmax 1 %f\n", max);
   float_t** vonNeumann = (float_t**)malloc(mat_size * sizeof(float_t*));
   for(i=0; i<mat_size; i++) {
     vonNeumann[i] = (float_t*)malloc(mat_size * sizeof(float_t));
   } 
 //    Fill vonNeumann matrix
-  for(i=0; i<mat_size; i++) {
-    for(j=0; j<mat_size; j++) {
-      cpt = 0;      
-      sum = 0;
-      if(i!=0) {
-        sum += abs_a_b(matrix[i][j], matrix[i-1][j]);
-        cpt++;
-      }
-      if(j!=0) {
-        sum += abs_a_b(matrix[i][j], matrix[i][j-1]);
-        cpt++;
-      }
-      if(i!=(mat_size-1)) {
-        sum += abs_a_b(matrix[i][j], matrix[i+1][j]);
-        cpt++;
-      }
-      if(j!=(mat_size-1)) {
-        sum += abs_a_b(matrix[i][j], matrix[i][j+1]);
-        cpt++;
-      }
+  int size = mat_size;
+//    Fill the four corner
+//      up-left
+  sum =  abs_a_b(matrix[0][0], matrix[1][0]);
+  sum +=  abs_a_b(matrix[0][0], matrix[0][1]);      
+  vonNeumann[0][0] = sum/2;
+
+//      up-right
+  sum =  abs_a_b(matrix[0][size-1], matrix[1][size-1]);
+  sum +=  abs_a_b(matrix[0][size-1], matrix[0][size-2]);      
+  vonNeumann[0][size-1] = sum/2;
+
+//      down-left
+  sum =  abs_a_b(matrix[size-1][0], matrix[size-2][0]);
+  sum +=  abs_a_b(matrix[size-1][0], matrix[size-1][1]);      
+  vonNeumann[size-1][0] = sum/2;
+
+//      down-right
+  sum =  abs_a_b(matrix[size-1][size-1], matrix[size-2][size-1]);
+  sum +=  abs_a_b(matrix[size-1][size-1], matrix[size-1][size-2]);      
+  vonNeumann[size-1][size-1] = sum/2;
+
+
+//    Fill the border
+//      up
+  cpt=3;  
+  //sum=0;  
+  i=0;
+  for(j=1; j<size-1; j++) {
+    sum =  abs_a_b(matrix[i][j], matrix[i][j-1]);
+    sum += abs_a_b(matrix[i][j], matrix[i+1][j]);
+    sum +=  abs_a_b(matrix[i][j], matrix[i][j+1]);     
+    vonNeumann[i][j] = sum/cpt;
+  } 
+//      down
+    i=size-1;
+  for(j=1; j<size-1; j++) {
+    sum =  abs_a_b(matrix[i][j], matrix[i][j-1]);
+    sum += abs_a_b(matrix[i][j], matrix[i-1][j]);
+    sum +=  abs_a_b(matrix[i][j], matrix[i][j+1]);     
+    vonNeumann[i][j] = sum/cpt;
+  } 
+//      left
+    j=0;
+  for(i=1; i<size-1; i++) {
+    sum =  abs_a_b(matrix[i][j], matrix[i-1][j]);
+    sum += abs_a_b(matrix[i][j], matrix[i][j+1]);
+    sum +=  abs_a_b(matrix[i][j], matrix[i+1][j]);     
+    vonNeumann[i][j] = sum/cpt;
+  } 
+//      right
+    j=size-1;
+  for(i=1; i<size-1; i++) {
+    sum =  abs_a_b(matrix[i][j], matrix[i-1][j]);
+    sum += abs_a_b(matrix[i][j], matrix[i][j-1]);
+    sum +=  abs_a_b(matrix[i][j], matrix[i+1][j]);     
+    vonNeumann[i][j] = sum/cpt;
+  } 
+
+//    Fill the rest
+  cpt = 4;
+  for(i=1; i<mat_size - 1; i++) {
+    for(j=1; j<mat_size -1 ; j++) {    
+      sum = abs_a_b(matrix[i][j], matrix[i-1][j]);     
+      sum += abs_a_b(matrix[i][j], matrix[i][j-1]);   
+      sum += abs_a_b(matrix[i][j], matrix[i+1][j]);     
+      sum += abs_a_b(matrix[i][j], matrix[i][j+1]);
+      
       vonNeumann[i][j] = sum/cpt;
     }
   }
