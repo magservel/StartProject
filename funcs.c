@@ -59,18 +59,6 @@ void create_random_array(star_t * stars, int size)
   }
 }
 
-
-/*typedef struct star{
-  int index;                   // counting index
-  char spectralType;           // random: O, B, A, F, G, K, M, L, T
-  unsigned short subType;      // random: 0-9
-  float_t magnitude;           // random: (-10, +20)
-  char designation[9]; 	       // sprintf("%c%d.%d", spectralType, subType, index)
-  struct pos{
-    float_t x, y, z;          // x & y random in (-1e5, 1e5), z random in (-3e3, 3e3)
-  } position;
-} star_t;
-*/
 void print_stars(star_t* array, int n)
 {
   int i;
@@ -98,73 +86,6 @@ float_t starfunc(star_t a, star_t b)
 }
 
 
-/*void swap_star(star_t* array, int i, int j) {
-
-  int l;
-  star_t tmp;
-
-  tmp.index = array[i].index;
-  array[i].index = array[j].index;
-  array[j].index = tmp.index;
-
-  tmp.spectralType = array[i].spectralType;
-  array[i].spectralType = array[j].spectralType;
-  array[j].spectralType = tmp.spectralType;
-
-  tmp.subType = array[i].subType;
-  array[i].subType = array[j].subType;
-  array[j].subType = tmp.subType;
-
-  tmp.index = array[i].magnitude;
-  array[i].magnitude = array[j].magnitude;
-  array[j].magnitude = tmp.magnitude;
-
-  for(l=0; l<9; l++) {
-    tmp.designation[l] = array[i].designation[l];
-    array[i].designation[l] = array[j].designation[l];
-    array[j].designation[l] = tmp.designation[l];
-  }
-  
-  tmp.position.x = array[i].position.x;
-  array[i].position.x = array[j].position.x;
-  array[j].position.x = tmp.position.x;
-
-  tmp.position.y = array[i].position.y;
-  array[i].position.y = array[j].position.y;
-  array[j].position.y = tmp.position.y;
-
-  tmp.position.z = array[i].position.z;
-  array[i].position.z = array[j].position.z;
-  array[j].position.z = tmp.position.z;
-}*/
-
-/*void swap_pointers(star_t** star1, star_t** star2) {
-
-  star_t* tmp = (star_t*)malloc(sizeof(star_t));
-
-  tmp = star1;
-  star1 = star2;
-  star2 = tmp;
-}*/
-
-/*void sort(star_t* array, int n) 
-{
-  int i, j;
-  star_t* tmp;
-  star_t origin;
-  origin.position.x = 0.00;
-  origin.position.y = 0.00;
-  origin.position.z = 0.00;
-
-  for(i= 0; i<n; i++) {
-    for(j= i +1; j<n; j++) {
-      if(distance_two_stars(array[i], origin) < distance_two_stars(array[j], origin)) {
-        //swap_pointers(&(array + i), &(array+j)); 
-        //swap_star(array, i, j)     
-      }  
-    }
-  }
-}*/
 
 void copy_star(star_t* star1, star_t* star2) {
     star1->index        = star2->index;
@@ -233,11 +154,11 @@ void fill_matrix(star_t * array, float_t **matrix, int size)
       matrix[i][j] = distance_two_stars(array[i], array[j]) + starfunc(array[i], array[j]); 
     }
   }
-  /*for(i=1; i<size; i++) {
+  for(i=1; i<size; i++) {
     for(j=i; j<size; j++) {
       matrix[i][j] = matrix[j][i];
     }
-  }*/
+  }
 } 
 
 void print_matrix(float_t** theMatrix, int n)
@@ -262,7 +183,31 @@ hist_param_t generate_histogram(float_t **matrix, int *histogram, int mat_size, 
     vonNeumann[i] = (float_t*)malloc(mat_size * sizeof(float_t));
   } 
 //    Fill vonNeumann matrix
-  int size = mat_size;
+
+  for(i=0; i<mat_size; i++) {
+    for(j=0; j<mat_size; j++) {
+      cpt = 0;      
+      sum = 0;
+      if(i!=0) {
+        sum += abs_a_b(matrix[i][j], matrix[i-1][j]);
+        cpt++;
+      }
+      if(j!=0) {
+        sum += abs_a_b(matrix[i][j], matrix[i][j-1]);
+        cpt++;
+      }
+      if(i!=(mat_size-1)) {
+        sum += abs_a_b(matrix[i][j], matrix[i+1][j]);
+        cpt++;
+      }
+      if(j!=(mat_size-1)) {
+        sum += abs_a_b(matrix[i][j], matrix[i][j+1]);
+        cpt++;
+      }
+      vonNeumann[i][j] = sum/cpt;
+    }
+  }
+/*  int size = mat_size;
 //    Fill the four corner
 //      up-left
   sum =  abs_a_b(matrix[0][0], matrix[1][0]);
@@ -333,7 +278,7 @@ hist_param_t generate_histogram(float_t **matrix, int *histogram, int mat_size, 
       vonNeumann[i][j] = sum/cpt;
     }
   }
-
+*/
 //    Get min et max
   for(i=0; i<mat_size; i++) {
     for(j=0; j<mat_size; j++) {
