@@ -154,8 +154,8 @@ void fill_matrix(star_t * array, float_t **matrix, int size)
       matrix[i][j] = distance_two_stars(array[i], array[j]) + starfunc(array[i], array[j]); 
     }
   }
-  for(i=1; i<size; i++) {
-    for(j=i; j<size; j++) {
+  for(i=0; i<size; i++) {
+    for(j=i+1; j<size; j++) {
       matrix[i][j] = matrix[j][i];
     }
   }
@@ -168,7 +168,7 @@ void print_matrix(float_t** theMatrix, int n)
   for(i = 0 ; i < n; i++)
     {
       for(j = 0 ; j < n ; j++)
-	      printf("%.2f " , theMatrix[i][j]);
+	      printf("%.2f\t" , theMatrix[i][j]);
       putchar('\n');
     }
 }
@@ -184,7 +184,7 @@ hist_param_t generate_histogram(float_t **matrix, int *histogram, int mat_size, 
   } 
 //    Fill vonNeumann matrix
 
-  for(i=0; i<mat_size; i++) {
+/*    for(i=0; i<mat_size; i++) {
     for(j=0; j<mat_size; j++) {
       cpt = 0;      
       sum = 0;
@@ -205,29 +205,40 @@ hist_param_t generate_histogram(float_t **matrix, int *histogram, int mat_size, 
         cpt++;
       }
       vonNeumann[i][j] = sum/cpt;
+      if (matrix[i][j] > max) max = matrix[i][j];
+      if (matrix[i][j] < min) min = matrix[i][j];
     }
-  }
-/*  int size = mat_size;
+  }*/
+  int size = mat_size;
 //    Fill the four corner
 //      up-left
   sum =  abs_a_b(matrix[0][0], matrix[1][0]);
   sum +=  abs_a_b(matrix[0][0], matrix[0][1]);      
   vonNeumann[0][0] = sum/2;
+  if (vonNeumann[0][0] > max) max = vonNeumann[0][0];
+  if (vonNeumann[0][0] < min) min = vonNeumann[0][0];
 
 //      up-right
   sum =  abs_a_b(matrix[0][size-1], matrix[1][size-1]);
   sum +=  abs_a_b(matrix[0][size-1], matrix[0][size-2]);      
   vonNeumann[0][size-1] = sum/2;
+  if (vonNeumann[0][size-1] > max) max = vonNeumann[0][size-1];
+  if (vonNeumann[0][size-1] < min) min = vonNeumann[0][size-1];
 
 //      down-left
   sum =  abs_a_b(matrix[size-1][0], matrix[size-2][0]);
   sum +=  abs_a_b(matrix[size-1][0], matrix[size-1][1]);      
   vonNeumann[size-1][0] = sum/2;
+  if (vonNeumann[size-1][0] > max) max = vonNeumann[size-1][0];
+  if (vonNeumann[size-1][0] < min) min = vonNeumann[size-1][0];
+
 
 //      down-right
   sum =  abs_a_b(matrix[size-1][size-1], matrix[size-2][size-1]);
   sum +=  abs_a_b(matrix[size-1][size-1], matrix[size-1][size-2]);      
   vonNeumann[size-1][size-1] = sum/2;
+  if (vonNeumann[size-1][size-1] > max) max = vonNeumann[size-1][size-1];
+  if (vonNeumann[size-1][size-1] < min) min = vonNeumann[size-1][size-1];
 
 
 //    Fill the border
@@ -240,6 +251,8 @@ hist_param_t generate_histogram(float_t **matrix, int *histogram, int mat_size, 
     sum += abs_a_b(matrix[i][j], matrix[i+1][j]);
     sum +=  abs_a_b(matrix[i][j], matrix[i][j+1]);     
     vonNeumann[i][j] = sum/cpt;
+    if (vonNeumann[i][j] > max) max = vonNeumann[i][j];
+    if (vonNeumann[i][j] < min) min = vonNeumann[i][j];
   } 
 //      down
     i=size-1;
@@ -248,6 +261,8 @@ hist_param_t generate_histogram(float_t **matrix, int *histogram, int mat_size, 
     sum += abs_a_b(matrix[i][j], matrix[i-1][j]);
     sum +=  abs_a_b(matrix[i][j], matrix[i][j+1]);     
     vonNeumann[i][j] = sum/cpt;
+    if (vonNeumann[i][j] > max) max = vonNeumann[i][j];
+    if (vonNeumann[i][j] < min) min = vonNeumann[i][j];
   } 
 //      left
     j=0;
@@ -256,6 +271,8 @@ hist_param_t generate_histogram(float_t **matrix, int *histogram, int mat_size, 
     sum += abs_a_b(matrix[i][j], matrix[i][j+1]);
     sum +=  abs_a_b(matrix[i][j], matrix[i+1][j]);     
     vonNeumann[i][j] = sum/cpt;
+    if (vonNeumann[i][j] > max) max = vonNeumann[i][j];
+    if (vonNeumann[i][j] < min) min = vonNeumann[i][j];
   } 
 //      right
     j=size-1;
@@ -264,6 +281,8 @@ hist_param_t generate_histogram(float_t **matrix, int *histogram, int mat_size, 
     sum += abs_a_b(matrix[i][j], matrix[i][j-1]);
     sum +=  abs_a_b(matrix[i][j], matrix[i+1][j]);     
     vonNeumann[i][j] = sum/cpt;
+    if (vonNeumann[i][j] > max) max = vonNeumann[i][j];
+    if (vonNeumann[i][j] < min) min = vonNeumann[i][j];
   } 
 
 //    Fill the rest
@@ -274,27 +293,18 @@ hist_param_t generate_histogram(float_t **matrix, int *histogram, int mat_size, 
       sum += abs_a_b(matrix[i][j], matrix[i][j-1]);   
       sum += abs_a_b(matrix[i][j], matrix[i+1][j]);     
       sum += abs_a_b(matrix[i][j], matrix[i][j+1]);
-      
       vonNeumann[i][j] = sum/cpt;
+      if (vonNeumann[i][j] > max) max = vonNeumann[i][j];
+      if (vonNeumann[i][j] < min) min = vonNeumann[i][j];
     }
   }
-*/
-//    Get min et max
-  for(i=0; i<mat_size; i++) {
-    for(j=0; j<mat_size; j++) {
-      if (matrix[i][j] > max) max = matrix[i][j];
-      if (matrix[i][j] < min) min = matrix[i][j];
-    }
-  }
-//    printf("max 2 %f\n", max);
-//    printf("int max = %d\n", (int)max);
 
 //    Fill histogram  
   step = (max-min)/hist_size;
 //  printf("step %f\n", step);
   for(i=0; i<mat_size; i++) {
     for(j=0; j<mat_size; j++) {
-      cpt = (int)((matrix[i][j] - min)/step);
+      cpt = (int)((vonNeumann[i][j] - min)/step);
       histogram[cpt]++;
     }
   }
