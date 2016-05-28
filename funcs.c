@@ -182,9 +182,9 @@ void merge_sort(star_t* array, int n) {
     int n1 = n / 2;
     int n2 = n - n1;
     // Allocate new lists
-    star_t* list = (star_t*)malloc((n1+n2)*sizeof(star_t));
-    star_t* list1 = list;
-    star_t* list2 = list+ n1;
+   // star_t* list = (star_t*)malloc((n1+n2)*sizeof(star_t));
+    star_t* list1 = (star_t*)malloc((n1)*sizeof(star_t));
+    star_t* list2 = (star_t*)malloc((n2)*sizeof(star_t));
     int i;
     for(i = 0; i < n1; i++)
       copy_star(list1+i, array+i);
@@ -218,7 +218,9 @@ void merge_sort(star_t* array, int n) {
       i2++;
       i++;
     }
-    free(list);
+   // free(list);
+    free(list1);
+    free(list2);
   }
   return;
 }
