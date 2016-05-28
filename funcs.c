@@ -182,9 +182,9 @@ void merge_sort(star_t* array, int n) {
     int n1 = n / 2;
     int n2 = n - n1;
     // Allocate new lists
-   // star_t* list = (star_t*)malloc((n1+n2)*sizeof(star_t));
-    star_t* list1 = (star_t*)malloc((n1)*sizeof(star_t));
-    star_t* list2 = (star_t*)malloc((n2)*sizeof(star_t));
+    star_t* list = (star_t*)malloc((n1+n2)*sizeof(star_t));
+    star_t* list1 = list;
+    star_t* list2 = list + n1;
     int i;
     for(i = 0; i < n1; i++)
       copy_star(list1+i, array+i);
@@ -197,6 +197,7 @@ void merge_sort(star_t* array, int n) {
     int i1 = 0;
     int i2 = 0;
     i = 0;
+  
     while(i1 < n1 && i2 < n2) {
       if(distance_origin(list1[i1]) < distance_origin(list2[i2])) {
         copy_star(array+i, list1+i1);
@@ -218,9 +219,7 @@ void merge_sort(star_t* array, int n) {
       i2++;
       i++;
     }
-   // free(list);
-    free(list1);
-    free(list2);
+    free(list);
   }
   return;
 }
@@ -230,11 +229,16 @@ void fill_matrix(star_t * array, float_t **matrix, int size)
   int i, j;
   
   for(i=0; i<size; i++) {
-    for(j=0; j<size; j++) {
+    for(j=i; j<size; j++) {
       matrix[i][j] = distance_two_stars(array[i], array[j]) + starfunc(array[i], array[j]); 
     }
   }
-}
+  for(j=1; j<size; j++) {
+    for(i=j; i<size; i++) {
+      matrix[j][i] = matrix[i][j];
+    }
+  }
+} 
 
 void print_matrix(float_t** theMatrix, int n)
 {
