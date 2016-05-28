@@ -48,7 +48,7 @@ int main(int argc, char **argv)
    
   end = clock();
   printtime(start, end);
-  print_stars(stars, N);
+  //print_stars(stars, N);
    
   printf("allocating matrix: \t");
   start = clock();
