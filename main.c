@@ -80,4 +80,6 @@ int main(int argc, char **argv)
 
   free(stars);
   free(matrix);
+
+  return 0;
 }
