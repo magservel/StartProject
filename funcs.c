@@ -207,8 +207,8 @@ hist_param_t generate_histogram(float_t **matrix, int *histogram, int mat_size, 
 //    Get min et max
   for(i=0; i<mat_size; i++) {
     for(j=0; j<mat_size; j++) {
-      if (matrix[i][j] > max) max = matrix[i][j];
-      if (matrix[i][j] < min) min = matrix[i][j];
+      if (vonNeumann[i][j] > max) max = vonNeumann[i][j];
+      if (vonNeumann[i][j] < min) min = vonNeumann[i][j];
     }
   }
 //    printf("max 2 %f\n", max);
@@ -219,7 +219,7 @@ hist_param_t generate_histogram(float_t **matrix, int *histogram, int mat_size, 
 //  printf("step %f\n", step);
   for(i=0; i<mat_size; i++) {
     for(j=0; j<mat_size; j++) {
-      cpt = (int)((matrix[i][j] - min)/step);
+      cpt = (int)((vonNeumann[i][j] - min)/step);
       histogram[cpt]++;
     }
   }
