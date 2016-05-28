@@ -220,8 +220,7 @@ void merge_sort(star_t* array, int n) {
     }
     free(list);
   }
-  else 
-    return;
+  return;
 }
 
 void fill_matrix(star_t * array, float_t **matrix, int size)
