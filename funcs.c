@@ -10,15 +10,15 @@
 
 
 #include "funcs.h"
-
+#define abs_a_b(a,b) ((a-b)>0 ? (a-b) : (b-a))
 
 char spectralTypeArray[9] = {'O', 'B', 'A', 'F', 'G', 'K', 'M', 'L', 'T'};
 
 /* Absolute value of the difference between a and b*/
-inline float_t abs_a_b(float_t a, float_t b) {
+/*inline float_t abs_a_b(float_t a, float_t b) {
   if (a - b > 0) return a-b;
   else return b-a;
-}
+}*/
 
 /*Distance between two stars*/
 float_t distance_two_stars(star_t star1, star_t star2){

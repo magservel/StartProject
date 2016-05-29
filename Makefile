@@ -1,7 +1,7 @@
 
 
-CFLAGS = -W -Wall #-ansi -pedantic
-OFlAGS = -O
+FLAGS = -W -Wall #-ansi -pedantic
+OFlAGS = -O3
 
 all: main
 
