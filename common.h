@@ -14,6 +14,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <math.h>
+#include <float.h>
 
 #define float_t float 
 #define NUM_HIST_BOXES 10
