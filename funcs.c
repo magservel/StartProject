@@ -220,7 +220,8 @@ hist_param_t generate_histogram(float_t **matrix, int *histogram, int mat_size, 
   for(i=0; i<mat_size; i++) {
     for(j=0; j<mat_size; j++) {
       cpt = (int)((vonNeumann[i][j] - min)/step);
-      histogram[cpt]++;
+      if (cpt < hist_size) histogram[cpt]++;
+      else histogram[cpt-1]++;
     }
   }
   
@@ -230,6 +231,10 @@ hist_param_t generate_histogram(float_t **matrix, int *histogram, int mat_size, 
   hist_param.max = max;
   hist_param.bin_size = step;
 
+  for(i=0; i<size; i++) {
+    free(vonNeumann[i]);
+  }
+  free(vonNeumann);
   return hist_param;
 }
 

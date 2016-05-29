@@ -79,5 +79,8 @@ int main(int argc, char **argv)
   display_histogram(histogram, histparams);
 
   free(stars);
+  for(i=0; i<size; i++) {
+    free(matrix[i]);
+  }
   free(matrix);
 }
