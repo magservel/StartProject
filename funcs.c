@@ -6,6 +6,7 @@
  *  Author: Marcus Holm
  *  Modified by: Elias Rudberg
  *
+ *  Examination of : Magali Servel
  **/
 
 
@@ -51,17 +52,6 @@ void create_random_array(star_t * stars, int size)
 }
 
 
-/*typedef struct star{
-  int index;                   // counting index
-  char spectralType;           // random: O, B, A, F, G, K, M, L, T
-  unsigned short subType;      // random: 0-9
-  float_t magnitude;           // random: (-10, +20)
-  char designation[9]; 	       // sprintf("%c%d.%d", spectralType, subType, index)
-  struct pos{
-    float_t x, y, z;          // x & y random in (-1e5, 1e5), z random in (-3e3, 3e3)
-  } position;
-} star_t;
-*/
 void print_stars(star_t* array, int n)
 {
   int i;
@@ -178,7 +168,6 @@ hist_param_t generate_histogram(float_t **matrix, int *histogram, int mat_size, 
 {
   int i, j, cpt, sum;
   float_t min = FLT_MAX, max = 0, step;
-  //printf("\nmax 1 %f\n", max);
   float_t** vonNeumann = (float_t**)malloc(mat_size * sizeof(float_t*));
   for(i=0; i<mat_size; i++) {
     vonNeumann[i] = (float_t*)malloc(mat_size * sizeof(float_t));
@@ -215,12 +204,9 @@ hist_param_t generate_histogram(float_t **matrix, int *histogram, int mat_size, 
       if (vonNeumann[i][j] < min) min = vonNeumann[i][j];
     }
   }
-//    printf("max 2 %f\n", max);
-//    printf("int max = %d\n", (int)max);
 
 //    Fill histogram  
   step = (max-min)/hist_size;
-//  printf("step %f\n", step);
   for(i=0; i<mat_size; i++) {
     for(j=0; j<mat_size; j++) {
       cpt = (int)((vonNeumann[i][j] - min)/step);
