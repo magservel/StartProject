@@ -1,0 +1,740 @@
+desc: (none)
+cmd: ./main 5000
+time_unit: i
+#-----------
+snapshot=0
+#-----------
+time=0
+mem_heap_B=0
+mem_heap_extra_B=0
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=1
+#-----------
+time=142331
+mem_heap_B=197340
+mem_heap_extra_B=20
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=2
+#-----------
+time=7511819
+mem_heap_B=377340
+mem_heap_extra_B=28
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=3
+#-----------
+time=12938324
+mem_heap_B=467340
+mem_heap_extra_B=36
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=4
+#-----------
+time=15651615
+mem_heap_B=512340
+mem_heap_extra_B=52
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=5
+#-----------
+time=18362934
+mem_heap_B=557124
+mem_heap_extra_B=172
+mem_stacks_B=0
+heap_tree=detailed
+n3: 557124 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n2: 359784 0x4014D8: merge_sort (funcs.c:106)
+  n0: 180000 0x400A9D: main (main.c:47)
+  n2: 179784 0x40194C: merge_sort (funcs.c:115)
+   n0: 90000 0x400A9D: main (main.c:47)
+   n2: 89784 0x40194C: merge_sort (funcs.c:115)
+    n0: 45000 0x400A9D: main (main.c:47)
+    n2: 44784 0x40194C: merge_sort (funcs.c:115)
+     n0: 22500 0x400A9D: main (main.c:47)
+     n2: 22284 0x40194C: merge_sort (funcs.c:115)
+      n0: 11232 0x400A9D: main (main.c:47)
+      n2: 11052 0x40194C: merge_sort (funcs.c:115)
+       n0: 5616 0x400A9D: main (main.c:47)
+       n0: 5436 in 1 place, below massif's threshold (01.00%)
+ n0: 180000 0x400A18: main (main.c:33)
+ n1: 17340 0x52305FF: monstartup (gmon.c:134)
+  n1: 17340 0x400DDB: __gmon_start__ (in /home/magali/StartProject/main)
+   n1: 17340 0x4C287FB: ??? (in /usr/lib/valgrind/vgpreload_massif-amd64-linux.so)
+    n1: 17340 0x4F9116F3FFFFFFFE: ???
+     n1: 17340 0x40100FB: call_init.part.0 (dl-init.c:64)
+      n1: 17340 0x4010243: _dl_init (dl-init.c:36)
+       n1: 17340 0x4001308: ??? (in /lib/x86_64-linux-gnu/ld-2.19.so)
+        n1: 17340 0x0: ???
+         n1: 17340 0xFFF0002B5: ???
+          n0: 17340 0xFFF0002BC: ???
+#-----------
+snapshot=6
+#-----------
+time=21969725
+mem_heap_B=555900
+mem_heap_extra_B=116
+mem_stacks_B=0
+heap_tree=detailed
+n3: 555900 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n3: 358560 0x4014D8: merge_sort (funcs.c:106)
+  n0: 180000 0x400A9D: main (main.c:47)
+  n3: 170136 0x40194C: merge_sort (funcs.c:115)
+   n0: 90000 0x400A9D: main (main.c:47)
+   n3: 78732 0x40194C: merge_sort (funcs.c:115)
+    n0: 45000 0x400A9D: main (main.c:47)
+    n3: 33732 0x40194C: merge_sort (funcs.c:115)
+     n0: 22500 0x400A9D: main (main.c:47)
+     n2: 11232 0x40194C: merge_sort (funcs.c:115)
+      n0: 11232 0x400A9D: main (main.c:47)
+      n0: 0 in 2 places, all below massif's threshold (01.00%)
+     n0: 0 in 1 place, below massif's threshold (01.00%)
+    n0: 0 in 1 place, below massif's threshold (01.00%)
+   n0: 1404 in 1 place, below massif's threshold (01.00%)
+  n2: 8424 0x401958: merge_sort (funcs.c:116)
+   n2: 5616 0x40194C: merge_sort (funcs.c:115)
+    n2: 5616 0x40194C: merge_sort (funcs.c:115)
+     n2: 5616 0x40194C: merge_sort (funcs.c:115)
+      n2: 5616 0x40194C: merge_sort (funcs.c:115)
+       n0: 5616 0x400A9D: main (main.c:47)
+       n0: 0 in 2 places, all below massif's threshold (01.00%)
+      n0: 0 in 1 place, below massif's threshold (01.00%)
+     n0: 0 in 1 place, below massif's threshold (01.00%)
+    n0: 0 in 1 place, below massif's threshold (01.00%)
+   n0: 2808 in 1 place, below massif's threshold (01.00%)
+ n0: 180000 0x400A18: main (main.c:33)
+ n1: 17340 0x52305FF: monstartup (gmon.c:134)
+  n1: 17340 0x400DDB: __gmon_start__ (in /home/magali/StartProject/main)
+   n1: 17340 0x4C287FB: ??? (in /usr/lib/valgrind/vgpreload_massif-amd64-linux.so)
+    n1: 17340 0x4F9116F3FFFFFFFE: ???
+     n1: 17340 0x40100FB: call_init.part.0 (dl-init.c:64)
+      n1: 17340 0x4010243: _dl_init (dl-init.c:36)
+       n1: 17340 0x4001308: ??? (in /lib/x86_64-linux-gnu/ld-2.19.so)
+        n1: 17340 0x0: ???
+         n1: 17340 0xFFF0002B5: ???
+          n0: 17340 0xFFF0002BC: ???
+#-----------
+snapshot=7
+#-----------
+time=24856212
+mem_heap_B=557268
+mem_heap_extra_B=188
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=8
+#-----------
+time=27020599
+mem_heap_B=557052
+mem_heap_extra_B=164
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=9
+#-----------
+time=29381589
+mem_heap_B=534840
+mem_heap_extra_B=72
+mem_stacks_B=0
+heap_tree=detailed
+n3: 534840 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n3: 337500 0x4014D8: merge_sort (funcs.c:106)
+  n0: 180000 0x400A9D: main (main.c:47)
+  n3: 157500 0x40194C: merge_sort (funcs.c:115)
+   n0: 90000 0x400A9D: main (main.c:47)
+   n3: 67500 0x40194C: merge_sort (funcs.c:115)
+    n0: 45000 0x400A9D: main (main.c:47)
+    n2: 22500 0x40194C: merge_sort (funcs.c:115)
+     n0: 22500 0x400A9D: main (main.c:47)
+     n0: 0 in 2 places, all below massif's threshold (01.00%)
+    n0: 0 in 1 place, below massif's threshold (01.00%)
+   n0: 0 in 1 place, below massif's threshold (01.00%)
+  n0: 0 in 1 place, below massif's threshold (01.00%)
+ n0: 180000 0x400A18: main (main.c:33)
+ n1: 17340 0x52305FF: monstartup (gmon.c:134)
+  n1: 17340 0x400DDB: __gmon_start__ (in /home/magali/StartProject/main)
+   n1: 17340 0x4C287FB: ??? (in /usr/lib/valgrind/vgpreload_massif-amd64-linux.so)
+    n1: 17340 0x4F9116F3FFFFFFFE: ???
+     n1: 17340 0x40100FB: call_init.part.0 (dl-init.c:64)
+      n1: 17340 0x4010243: _dl_init (dl-init.c:36)
+       n1: 17340 0x4001308: ??? (in /lib/x86_64-linux-gnu/ld-2.19.so)
+        n1: 17340 0x0: ???
+         n1: 17340 0xFFF0002B5: ???
+          n0: 17340 0xFFF0002BC: ???
+#-----------
+snapshot=10
+#-----------
+time=32983469
+mem_heap_B=556584
+mem_heap_extra_B=128
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=11
+#-----------
+time=35557735
+mem_heap_B=556584
+mem_heap_extra_B=128
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=12
+#-----------
+time=37256438
+mem_heap_B=556944
+mem_heap_extra_B=160
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=13
+#-----------
+time=39831454
+mem_heap_B=556980
+mem_heap_extra_B=172
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=14
+#-----------
+time=43159878
+mem_heap_B=512340
+mem_heap_extra_B=52
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=15
+#-----------
+time=45918918
+mem_heap_B=534840
+mem_heap_extra_B=72
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=16
+#-----------
+time=49335203
+mem_heap_B=551688
+mem_heap_extra_B=88
+mem_stacks_B=0
+heap_tree=detailed
+n3: 551688 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n3: 354348 0x4014D8: merge_sort (funcs.c:106)
+  n0: 180000 0x400A9D: main (main.c:47)
+  n3: 129348 0x40194C: merge_sort (funcs.c:115)
+   n0: 90000 0x400A9D: main (main.c:47)
+   n2: 22500 0x401958: merge_sort (funcs.c:116)
+    n2: 22500 0x40194C: merge_sort (funcs.c:115)
+     n0: 22500 0x400A9D: main (main.c:47)
+     n0: 0 in 2 places, all below massif's threshold (01.00%)
+    n0: 0 in 1 place, below massif's threshold (01.00%)
+   n3: 16848 0x40194C: merge_sort (funcs.c:115)
+    n2: 11232 0x401958: merge_sort (funcs.c:116)
+     n2: 11232 0x40194C: merge_sort (funcs.c:115)
+      n0: 11232 0x400A9D: main (main.c:47)
+      n0: 0 in 2 places, all below massif's threshold (01.00%)
+     n0: 0 in 1 place, below massif's threshold (01.00%)
+    n2: 5616 0x40194C: merge_sort (funcs.c:115)
+     n2: 5616 0x401958: merge_sort (funcs.c:116)
+      n2: 5616 0x40194C: merge_sort (funcs.c:115)
+       n0: 5616 0x400A9D: main (main.c:47)
+       n0: 0 in 2 places, all below massif's threshold (01.00%)
+      n0: 0 in 1 place, below massif's threshold (01.00%)
+     n0: 0 in 2 places, all below massif's threshold (01.00%)
+    n0: 0 in 1 place, below massif's threshold (01.00%)
+  n2: 45000 0x401958: merge_sort (funcs.c:116)
+   n2: 45000 0x40194C: merge_sort (funcs.c:115)
+    n0: 45000 0x400A9D: main (main.c:47)
+    n0: 0 in 2 places, all below massif's threshold (01.00%)
+   n0: 0 in 1 place, below massif's threshold (01.00%)
+ n0: 180000 0x400A18: main (main.c:33)
+ n1: 17340 0x52305FF: monstartup (gmon.c:134)
+  n1: 17340 0x400DDB: __gmon_start__ (in /home/magali/StartProject/main)
+   n1: 17340 0x4C287FB: ??? (in /usr/lib/valgrind/vgpreload_massif-amd64-linux.so)
+    n1: 17340 0x4F9116F3FFFFFFFE: ???
+     n1: 17340 0x40100FB: call_init.part.0 (dl-init.c:64)
+      n1: 17340 0x4010243: _dl_init (dl-init.c:36)
+       n1: 17340 0x4001308: ??? (in /lib/x86_64-linux-gnu/ld-2.19.so)
+        n1: 17340 0x0: ???
+         n1: 17340 0xFFF0002B5: ???
+          n0: 17340 0xFFF0002BC: ???
+#-----------
+snapshot=17
+#-----------
+time=52085328
+mem_heap_B=546072
+mem_heap_extra_B=80
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=18
+#-----------
+time=54658847
+mem_heap_B=556620
+mem_heap_extra_B=140
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=19
+#-----------
+time=56415106
+mem_heap_B=557232
+mem_heap_extra_B=184
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=20
+#-----------
+time=59675141
+mem_heap_B=546072
+mem_heap_extra_B=80
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=21
+#-----------
+time=61896416
+mem_heap_B=556584
+mem_heap_extra_B=128
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=22
+#-----------
+time=64470499
+mem_heap_B=556584
+mem_heap_extra_B=128
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=23
+#-----------
+time=68251439
+mem_heap_B=551724
+mem_heap_extra_B=100
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=24
+#-----------
+time=70601079
+mem_heap_B=557124
+mem_heap_extra_B=156
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=25
+#-----------
+time=73476825
+mem_heap_B=467340
+mem_heap_extra_B=36
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=26
+#-----------
+time=76281174
+mem_heap_B=377340
+mem_heap_extra_B=28
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=27
+#-----------
+time=78994640
+mem_heap_B=512340
+mem_heap_extra_B=52
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=28
+#-----------
+time=82136870
+mem_heap_B=556584
+mem_heap_extra_B=128
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=29
+#-----------
+time=83943291
+mem_heap_B=546072
+mem_heap_extra_B=80
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=30
+#-----------
+time=86519235
+mem_heap_B=546072
+mem_heap_extra_B=80
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=31
+#-----------
+time=88641401
+mem_heap_B=556944
+mem_heap_extra_B=160
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=32
+#-----------
+time=91956744
+mem_heap_B=557124
+mem_heap_extra_B=156
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=33
+#-----------
+time=94108365
+mem_heap_B=546072
+mem_heap_extra_B=80
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=34
+#-----------
+time=96330753
+mem_heap_B=556584
+mem_heap_extra_B=128
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=35
+#-----------
+time=98904595
+mem_heap_B=556584
+mem_heap_extra_B=128
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=36
+#-----------
+time=101717959
+mem_heap_B=556944
+mem_heap_extra_B=160
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=37
+#-----------
+time=104584184
+mem_heap_B=557448
+mem_heap_extra_B=208
+mem_stacks_B=0
+heap_tree=detailed
+n3: 557448 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n3: 360108 0x4014D8: merge_sort (funcs.c:106)
+  n0: 180000 0x400A9D: main (main.c:47)
+  n3: 133524 0x401958: merge_sort (funcs.c:116)
+   n0: 90000 0x400A9D: main (main.c:47)
+   n2: 23328 0x40194C: merge_sort (funcs.c:115)
+    n2: 23328 0x401958: merge_sort (funcs.c:116)
+     n0: 22500 0x400A9D: main (main.c:47)
+     n0: 828 in 2 places, all below massif's threshold (01.00%)
+    n0: 0 in 2 places, all below massif's threshold (01.00%)
+   n2: 20196 0x401958: merge_sort (funcs.c:116)
+    n2: 11700 0x40194C: merge_sort (funcs.c:115)
+     n2: 11700 0x401958: merge_sort (funcs.c:116)
+      n0: 11268 0x400A9D: main (main.c:47)
+      n0: 432 in 2 places, all below massif's threshold (01.00%)
+     n0: 0 in 2 places, all below massif's threshold (01.00%)
+    n2: 8496 0x401958: merge_sort (funcs.c:116)
+     n2: 5652 0x40194C: merge_sort (funcs.c:115)
+      n2: 5652 0x401958: merge_sort (funcs.c:116)
+       n0: 5652 0x400A9D: main (main.c:47)
+       n0: 0 in 2 places, all below massif's threshold (01.00%)
+      n0: 0 in 2 places, all below massif's threshold (01.00%)
+     n0: 2844 in 1 place, below massif's threshold (01.00%)
+  n2: 46584 0x40194C: merge_sort (funcs.c:115)
+   n2: 46584 0x401958: merge_sort (funcs.c:116)
+    n0: 45000 0x400A9D: main (main.c:47)
+    n0: 1584 in 2 places, all below massif's threshold (01.00%)
+   n0: 0 in 2 places, all below massif's threshold (01.00%)
+ n0: 180000 0x400A18: main (main.c:33)
+ n1: 17340 0x52305FF: monstartup (gmon.c:134)
+  n1: 17340 0x400DDB: __gmon_start__ (in /home/magali/StartProject/main)
+   n1: 17340 0x4C287FB: ??? (in /usr/lib/valgrind/vgpreload_massif-amd64-linux.so)
+    n1: 17340 0x4F9116F3FFFFFFFE: ???
+     n1: 17340 0x40100FB: call_init.part.0 (dl-init.c:64)
+      n1: 17340 0x4010243: _dl_init (dl-init.c:36)
+       n1: 17340 0x4001308: ??? (in /lib/x86_64-linux-gnu/ld-2.19.so)
+        n1: 17340 0x0: ???
+         n1: 17340 0xFFF0002B5: ???
+          n0: 17340 0xFFF0002BC: ???
+#-----------
+snapshot=38
+#-----------
+time=106506739
+mem_heap_B=512340
+mem_heap_extra_B=52
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=39
+#-----------
+time=109265690
+mem_heap_B=534840
+mem_heap_extra_B=72
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=40
+#-----------
+time=111051281
+mem_heap_B=556584
+mem_heap_extra_B=128
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=41
+#-----------
+time=113625218
+mem_heap_B=556584
+mem_heap_extra_B=128
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=42
+#-----------
+time=115781287
+mem_heap_B=534840
+mem_heap_extra_B=72
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=43
+#-----------
+time=118004337
+mem_heap_B=556620
+mem_heap_extra_B=140
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=44
+#-----------
+time=119761429
+mem_heap_B=557232
+mem_heap_extra_B=184
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=45
+#-----------
+time=123021834
+mem_heap_B=546072
+mem_heap_extra_B=80
+mem_stacks_B=0
+heap_tree=detailed
+n3: 546072 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n3: 348732 0x4014D8: merge_sort (funcs.c:106)
+  n0: 180000 0x400A9D: main (main.c:47)
+  n3: 157500 0x401958: merge_sort (funcs.c:116)
+   n0: 90000 0x400A9D: main (main.c:47)
+   n3: 67500 0x401958: merge_sort (funcs.c:116)
+    n0: 45000 0x400A9D: main (main.c:47)
+    n2: 22500 0x401958: merge_sort (funcs.c:116)
+     n0: 22500 0x400A9D: main (main.c:47)
+     n0: 0 in 2 places, all below massif's threshold (01.00%)
+    n0: 0 in 1 place, below massif's threshold (01.00%)
+   n0: 0 in 1 place, below massif's threshold (01.00%)
+  n2: 11232 0x40194C: merge_sort (funcs.c:115)
+   n2: 11232 0x401958: merge_sort (funcs.c:116)
+    n2: 11232 0x401958: merge_sort (funcs.c:116)
+     n2: 11232 0x401958: merge_sort (funcs.c:116)
+      n0: 11232 0x400A9D: main (main.c:47)
+      n0: 0 in 2 places, all below massif's threshold (01.00%)
+     n0: 0 in 2 places, all below massif's threshold (01.00%)
+    n0: 0 in 2 places, all below massif's threshold (01.00%)
+   n0: 0 in 2 places, all below massif's threshold (01.00%)
+ n0: 180000 0x400A18: main (main.c:33)
+ n1: 17340 0x52305FF: monstartup (gmon.c:134)
+  n1: 17340 0x400DDB: __gmon_start__ (in /home/magali/StartProject/main)
+   n1: 17340 0x4C287FB: ??? (in /usr/lib/valgrind/vgpreload_massif-amd64-linux.so)
+    n1: 17340 0x4F9116F3FFFFFFFE: ???
+     n1: 17340 0x40100FB: call_init.part.0 (dl-init.c:64)
+      n1: 17340 0x4010243: _dl_init (dl-init.c:36)
+       n1: 17340 0x4001308: ??? (in /lib/x86_64-linux-gnu/ld-2.19.so)
+        n1: 17340 0x0: ???
+         n1: 17340 0xFFF0002B5: ???
+          n0: 17340 0xFFF0002BC: ???
+#-----------
+snapshot=46
+#-----------
+time=125387035
+mem_heap_B=557232
+mem_heap_extra_B=176
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=47
+#-----------
+time=127816903
+mem_heap_B=556584
+mem_heap_extra_B=128
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=48
+#-----------
+time=130629776
+mem_heap_B=556944
+mem_heap_extra_B=160
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=49
+#-----------
+time=133801638
+mem_heap_B=557376
+mem_heap_extra_B=192
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=50
+#-----------
+time=133945286
+mem_heap_B=557124
+mem_heap_extra_B=156
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=51
+#-----------
+time=134101108
+mem_heap_B=554604
+mem_heap_extra_B=124
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=52
+#-----------
+time=134365877
+mem_heap_B=546108
+mem_heap_extra_B=92
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=53
+#-----------
+time=134717023
+mem_heap_B=534840
+mem_heap_extra_B=72
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=54
+#-----------
+time=135418068
+mem_heap_B=512340
+mem_heap_extra_B=52
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=55
+#-----------
+time=136820257
+mem_heap_B=467340
+mem_heap_extra_B=36
+mem_stacks_B=0
+heap_tree=detailed
+n3: 467340 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n3: 270000 0x4014D8: merge_sort (funcs.c:106)
+  n0: 180000 0x400A9D: main (main.c:47)
+  n2: 90000 0x401958: merge_sort (funcs.c:116)
+   n0: 90000 0x400A9D: main (main.c:47)
+   n0: 0 in 2 places, all below massif's threshold (01.00%)
+  n0: 0 in 1 place, below massif's threshold (01.00%)
+ n0: 180000 0x400A18: main (main.c:33)
+ n1: 17340 0x52305FF: monstartup (gmon.c:134)
+  n1: 17340 0x400DDB: __gmon_start__ (in /home/magali/StartProject/main)
+   n1: 17340 0x4C287FB: ??? (in /usr/lib/valgrind/vgpreload_massif-amd64-linux.so)
+    n1: 17340 0x4F9116F3FFFFFFFE: ???
+     n1: 17340 0x40100FB: call_init.part.0 (dl-init.c:64)
+      n1: 17340 0x4010243: _dl_init (dl-init.c:36)
+       n1: 17340 0x4001308: ??? (in /lib/x86_64-linux-gnu/ld-2.19.so)
+        n1: 17340 0x0: ???
+         n1: 17340 0xFFF0002B5: ???
+          n0: 17340 0xFFF0002BC: ???
+#-----------
+snapshot=56
+#-----------
+time=139624734
+mem_heap_B=377340
+mem_heap_extra_B=28
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=57
+#-----------
+time=145233542
+mem_heap_B=197340
+mem_heap_extra_B=20
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=58
+#-----------
+time=145375893
+mem_heap_B=79117340
+mem_heap_extra_B=31580
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=59
+#-----------
+time=775400868
+mem_heap_B=100237380
+mem_heap_extra_B=40044
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=60
+#-----------
+time=775543202
+mem_heap_B=180677380
+mem_heap_extra_B=72212
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=61
+#-----------
+time=1961914465
+mem_heap_B=200277380
+mem_heap_extra_B=80052
+mem_stacks_B=0
+heap_tree=peak
+n17: 200277380 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n0: 12480000 0x400BDF: main (main.c:58)
+ n0: 12480000 0x400BEB: main (main.c:58)
+ n0: 12480000 0x400BF8: main (main.c:58)
+ n0: 12480000 0x400C05: main (main.c:58)
+ n0: 12480000 0x400C12: main (main.c:58)
+ n0: 12480000 0x400C1F: main (main.c:58)
+ n0: 12480000 0x400C2C: main (main.c:58)
+ n0: 12480000 0x400C39: main (main.c:58)
+ n1: 12480000 0x4028D0: generate_histogram (funcs.c:183)
+  n0: 12480000 0x400D00: main (main.c:75)
+ n1: 12480000 0x4028DD: generate_histogram (funcs.c:183)
+  n0: 12480000 0x400D00: main (main.c:75)
+ n1: 12480000 0x4028EA: generate_histogram (funcs.c:183)
+  n0: 12480000 0x400D00: main (main.c:75)
+ n1: 12480000 0x4028F7: generate_histogram (funcs.c:183)
+  n0: 12480000 0x400D00: main (main.c:75)
+ n1: 12480000 0x402904: generate_histogram (funcs.c:183)
+  n0: 12480000 0x400D00: main (main.c:75)
+ n1: 12480000 0x402911: generate_histogram (funcs.c:183)
+  n0: 12480000 0x400D00: main (main.c:75)
+ n1: 12480000 0x40291E: generate_histogram (funcs.c:183)
+  n0: 12480000 0x400D00: main (main.c:75)
+ n1: 12480000 0x40292B: generate_histogram (funcs.c:183)
+  n0: 12480000 0x400D00: main (main.c:75)
+ n0: 597380 in 22 places, all below massif's threshold (01.00%)

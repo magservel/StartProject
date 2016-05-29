@@ -87,7 +87,7 @@ float_t starfunc(star_t a, star_t b)
 
 
 
-static void copy_star(star_t* restrict star1, star_t* restrict star2) {
+void copy_star(star_t* restrict star1, star_t* restrict star2) {
     star1->index        = star2->index;
     star1->spectralType = star2->spectralType;
     star1->subType      = star2->subType;
@@ -214,6 +214,7 @@ hist_param_t generate_histogram(float_t ** restrict matrix, int * restrict histo
 	    vonNeumann[i][j] = vonNeumann[j][i];
     }
   }
+  //print_matrix(vonNeumann, mat_size);
 
 //    Fill histogram  
   step = (max-min)/hist_size;
@@ -221,7 +222,8 @@ hist_param_t generate_histogram(float_t ** restrict matrix, int * restrict histo
   for(i=0; i<mat_size; i++) {
     for(j=0; j<mat_size; j++) {
       cpt = (int)((vonNeumann[i][j] - min)/step);
-      histogram[cpt]++;
+      if (cpt < hist_size) histogram[cpt]++;
+      else histogram[cpt -1]++;
     }
   }
   
@@ -231,6 +233,10 @@ hist_param_t generate_histogram(float_t ** restrict matrix, int * restrict histo
   hist_param.max = max;
   hist_param.bin_size = step;
 
+  for(i=0; i<mat_size; i++) {
+    free(vonNeumann[i]);
+  }
+  free(vonNeumann[i]);
   return hist_param;
 }
 
