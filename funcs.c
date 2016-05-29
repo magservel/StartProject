@@ -65,14 +65,19 @@ void create_random_array(star_t * stars, int size)
 void print_stars(star_t* array, int n)
 {
   int i;
+  star_t origin;
+  origin.position.x = 0.00;
+  origin.position.y = 0.00;
+  origin.position.z = 0.00;
   printf("\nprint_stars, n = %d:\n", n);
+  
   for(i = 0; i<n; i++) {
     //printf("%d ",array[i].index);
     //printf("spectral Type %d ",array[i].spectralType);
     //printf("%d ",array[i].subType);
     //printf("%f ",array[i].magnitude);
     printf("designation %d %s \n", i, array[i].designation);
-    //printf("distance %f\n", distance_two_stars(array[i]));    
+    printf("distance %f\n", distance_two_stars(array[i], origin));    
     //printf("position x %d %f \n", i, array[i].position.x);
     //printf("position y %d %f \n", i, array[i].position.y);
     //printf("position z %d %f \n", i, array[i].position.z);
@@ -132,7 +137,6 @@ void swap_star(star_t* array, int i, int j) {
 void sort(star_t* array, int n) 
 {
   int i, j;
-  star_t* tmp;
   star_t origin;
   origin.position.x = 0.00;
   origin.position.y = 0.00;
@@ -174,7 +178,7 @@ hist_param_t generate_histogram(float_t **matrix, int *histogram, int mat_size, 
 {
   int i, j, cpt, sum;
   float_t min = FLT_MAX, max = 0, step;
-  printf("\nmax 1 %f\n", max);
+  //printf("\nmax 1 %f\n", max);
   float_t** vonNeumann = (float_t**)malloc(mat_size * sizeof(float_t*));
   for(i=0; i<mat_size; i++) {
     vonNeumann[i] = (float_t*)malloc(mat_size * sizeof(float_t));
@@ -231,7 +235,7 @@ hist_param_t generate_histogram(float_t **matrix, int *histogram, int mat_size, 
   hist_param.max = max;
   hist_param.bin_size = step;
 
-  for(i=0; i<size; i++) {
+  for(i=0; i<mat_size; i++) {
     free(vonNeumann[i]);
   }
   free(vonNeumann);
