@@ -5,15 +5,16 @@ OFlAGS = -O
 
 all: main
 
-main: main.o funcs.o
-#	gcc -o main main.o funcs.o 
+main: funcs.o main.o
+	gcc -o main funcs.o main.o -Wall -lm -pg -std=c99
 
 funcs.o: funcs.c
-	gcc -o funcs.o -c funcs.c -g -lm #-W -Wall #-ansi -pedantic 
+	gcc -o funcs.o -c funcs.c -Wall -lm -pg -std=c99
 
-main.o: main.c  
-	gcc -o main.o -c main.c -g -lm #-W -Wall #-ansi -pedantic
+main.o: main.c funcs.h
+	gcc -o main.o -c main.c -W -Wall -lm -pg -std=c99
 
 clean:
 	rm -rf *.o
+
 

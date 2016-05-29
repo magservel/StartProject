@@ -29,7 +29,7 @@ int main(int argc, char **argv)
       return 0;
     }
   N = atoi(argv[1]);
-  star_t *stars;
+  star_t *restrict stars;
   stars = (star_t *) malloc(N*sizeof(star_t));
    
   printf("creating random stars: \t");
@@ -52,7 +52,7 @@ int main(int argc, char **argv)
    
   printf("allocating matrix: \t");
   start = clock();
-  float_t **matrix;
+  float_t ** restrict matrix;
   matrix = (float_t**)malloc(N* sizeof(float_t*));
   for(i=0; i<N; i++) {
     matrix[i] = (float_t*)malloc(N*sizeof(float_t));
@@ -71,7 +71,7 @@ int main(int argc, char **argv)
   
   printf("generating histogram: \t");
   start = clock();
-  int *histogram = (int *)calloc(NUM_HIST_BOXES,sizeof(int));
+  int * histogram = (int *)calloc(NUM_HIST_BOXES,sizeof(int));
   hist_param_t histparams = generate_histogram(matrix, histogram, N, NUM_HIST_BOXES);
   end = clock();
   printtime(start, end);
