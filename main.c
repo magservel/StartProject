@@ -44,7 +44,7 @@ int main(int argc, char **argv)
   printf("sorting stars:    \t");
   start = clock();
 
-  merge_sort(stars, N);
+  sort(stars, N);
    
   end = clock();
   printtime(start, end);

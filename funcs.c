@@ -98,7 +98,7 @@ void copy_star(star_t* star1, star_t* star2) {
     star1->position.z   = star2->position.z ;
 }
 
-void merge_sort(star_t* array, int n) {
+void sort(star_t* array, int n) {
   if(n != 1) {
     int n1 = n / 2;
     int n2 = n - n1;
@@ -112,8 +112,8 @@ void merge_sort(star_t* array, int n) {
     for(i = 0; i < n2; i++)
       copy_star(list2+i, array+n1+i);
     // Sort list1 and list2
-    merge_sort(list1, n1);
-    merge_sort(list2, n2);
+    sort(list1, n1);
+    sort(list2, n2);
     // Merge!
     int i1 = 0;
     int i2 = 0;
