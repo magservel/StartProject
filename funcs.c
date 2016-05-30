@@ -21,7 +21,7 @@ char spectralTypeArray[9] = {'O', 'B', 'A', 'F', 'G', 'K', 'M', 'L', 'T'};
 }*/
 
 /*Distance between two stars*/
-float_t distance_two_stars(star_t star1, star_t star2){
+inline float_t distance_two_stars(star_t star1, star_t star2){
   
   float_t position_star_1 = sqrt(star1.position.x*star1.position.x + star1.position.y*star1.position.y + star1.position.z*star1.position.z);
   float_t position_star_2 = sqrt(star2.position.x*star2.position.x + star2.position.y*star2.position.y + star2.position.z*star2.position.z);
@@ -30,13 +30,13 @@ float_t distance_two_stars(star_t star1, star_t star2){
 }
 
 /*Distance of a star from the origin*/
-float_t distance_origin(star_t star) {
+inline float_t distance_origin(star_t star) {
 
   return sqrt(star.position.x*star.position.x + star.position.y*star.position.y + star.position.z*star.position.z);
 }
 
 /*Return a random float number between a and b*/
-float_t float_rand_a_b (float_t a, float_t b){
+inline float_t float_rand_a_b (float_t a, float_t b){
     return ( (float_t)rand()/(float_t)RAND_MAX ) * (b-a) + a;
 }
 
@@ -236,7 +236,7 @@ hist_param_t generate_histogram(float_t ** restrict matrix, int * restrict histo
   for(i=0; i<mat_size; i++) {
     free(vonNeumann[i]);
   }
-  free(vonNeumann[i]);
+  free(vonNeumann);
   return hist_param;
 }
 
